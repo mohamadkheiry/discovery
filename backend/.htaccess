@@ -1,0 +1,16 @@
+# امنیت هدرها
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+Options -Indexes
+AddDefaultCharset UTF-8
+DirectoryIndex index.html
+
+# فایل‌های حساس در ریشه
+<FilesMatch "\.(sql|md)$">
+    Require all denied
+</FilesMatch>

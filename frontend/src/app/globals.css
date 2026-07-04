@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f6f5fb;
+  --surface: #ffffff;
+  --surface-muted: #f6f5fb;
+  --ink: #1c1930;
+  --ink-soft: #5f5b76;
+  --ink-faint: #948fab;
+  --border: #e7e4f2;
+  --border-soft: #f0eef8;
+  --primary-color: #7c3aed;
+  --danger: #dc2626;
+  --success: #16a34a;
+  --warning: #d97706;
+  --radius-lg: 22px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+  --shadow-soft: 0 2px 8px rgba(28, 25, 48, 0.04), 0 12px 32px -12px rgba(28, 25, 48, 0.10);
+  --shadow-lift: 0 8px 24px -8px rgba(28, 25, 48, 0.18), 0 2px 6px rgba(28, 25, 48, 0.06);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --font-sans: var(--active-font, var(--font-vazirmatn));
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--ink);
+  font-family: var(--active-font, var(--font-vazirmatn)), "Vazirmatn", Tahoma, sans-serif;
+  font-feature-settings: "ss01" on;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--primary-color) 25%, transparent);
+}
+
+/* اسکرول‌بار ظریف */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-faint);
+  background-clip: padding-box;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+.transition-soft {
+  transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+  100% {
+    background-position: 400px 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--border-soft) 25%, var(--border) 37%, var(--border-soft) 63%);
+  background-size: 400px 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.animate-toast-in {
+  animation: toastIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
+}

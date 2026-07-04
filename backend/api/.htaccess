@@ -1,0 +1,7 @@
+# جلوگیری از دسترسی مستقیم به فایل تنظیمات
+<FilesMatch "^config\.php$">
+    Require all denied
+</FilesMatch>
+
+Options -Indexes
+AddDefaultCharset UTF-8

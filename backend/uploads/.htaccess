@@ -1,0 +1,6 @@
+# این پوشه فقط برای فایل‌های استاتیک (لوگو/فونت) است — اجرای PHP در آن ممنوع
+<FilesMatch "\.(php|phtml|php\d)$">
+    Require all denied
+</FilesMatch>
+
+Options -Indexes

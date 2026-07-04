@@ -1,0 +1,5 @@
+api/config.php
+uploads/logo/*
+uploads/fonts/*
+!uploads/logo/.gitkeep
+!uploads/fonts/.gitkeep
