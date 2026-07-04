@@ -131,16 +131,9 @@ export function DiscoveryWizard() {
     setSubmitting(true);
     setSubmitError(null);
     try {
-      const payload = {
-        ...data,
-        goals: (data.goals || []).join(","),
-        pages_needed: (data.pages_needed || []).join(","),
-        features_needed: (data.features_needed || []).join(","),
-        available_assets: (data.available_assets || []).join(","),
-        needed_assets: (data.needed_assets || []).join(","),
-        trust_elements: (data.trust_elements || []).join(","),
-      };
-      await api.postPublic("submissions.php?action=create", payload);
+      // نکته: بک‌اند انتظار آرایه‌ی خام برای فیلدهای چندانتخابی دارد (نه رشته‌ی CSV) —
+      // خودش آن‌ها را برای ذخیره در دیتابیس به CSV تبدیل می‌کند.
+      await api.postPublic("submissions.php?action=create", data);
       router.push("/success/");
     } catch (err) {
       if (err instanceof ApiError) {

@@ -23,3 +23,7 @@ define('APP_DEBUG', false);
 // مبداهای مجاز CORS فقط برای توسعه‌ی محلی (next dev روی پورت دیگر).
 // در production خالی بگذار؛ چون فرانت و بک‌اند هم‌مبدا هستند و CORS لازم نیست.
 define('CORS_ALLOWED_ORIGINS', []); // مثال توسعه: ['http://localhost:3000']
+
+// ایمیل بازیابی رمز عبور ادمین — لینک بازیابی همیشه به این آدرس ارسال می‌شود
+define('RESET_EMAIL_TO', 'mohamadkheiry75@gmail.com');
+define('RESET_EMAIL_FROM', 'hooshmandsazanjavan.ir@gmail.com');

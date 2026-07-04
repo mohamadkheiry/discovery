@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
+import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { LayoutDashboard, ListChecks, Settings, LogOut, Menu, X } from "lucide-react";
 import { Logo } from "@/components/Logo";
@@ -21,20 +22,23 @@ export function AdminShell({ children }: { children: ReactNode }) {
   const { settings } = useSiteSettings();
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const isLoginPage = pathname?.startsWith("/admin/login");
+  const isPublicAdminPage =
+    pathname?.startsWith("/admin/login") ||
+    pathname?.startsWith("/admin/forgot-password") ||
+    pathname?.startsWith("/admin/reset-password");
 
   useEffect(() => {
-    if (!checked || isLoginPage) return;
+    if (!checked || isPublicAdminPage) return;
     if (!admin) {
       router.replace("/admin/login/");
     }
-  }, [checked, admin, isLoginPage, router]);
+  }, [checked, admin, isPublicAdminPage, router]);
 
   useEffect(() => {
     queueMicrotask(() => setDrawerOpen(false));
   }, [pathname]);
 
-  if (isLoginPage) {
+  if (isPublicAdminPage) {
     return <>{children}</>;
   }
 
@@ -71,7 +75,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
         const active = isActive(item.href, item.exact);
         const Icon = item.icon;
         return (
-          <a
+          <Link
             key={item.href}
             href={item.href}
             className="transition-soft flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium"
@@ -82,7 +86,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
           >
             <Icon size={18} />
             {item.label}
-          </a>
+          </Link>
         );
       })}
     </nav>

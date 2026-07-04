@@ -3,6 +3,7 @@
 import type { SubmissionCreatePayload } from "@/lib/types";
 import { Field, Input, Textarea } from "@/components/ui";
 import { SingleSelectCards } from "@/components/OptionCards";
+import { JalaliDateInput } from "@/components/JalaliDateInput";
 import { BUDGET_RANGE_OPTIONS } from "@/lib/options";
 import { StepShell, FieldGroup } from "./StepShell";
 
@@ -28,11 +29,10 @@ export function Step8Budget({
       </Field>
 
       <FieldGroup>
-        <Field label="تاریخ شروع مدنظر" error={errors.start_date?.[0]}>
-          <Input
-            type="date"
-            value={data.start_date || ""}
-            onChange={(e) => update("start_date", e.target.value)}
+        <Field label="تاریخ شروع مدنظر (شمسی)" error={errors.start_date?.[0]}>
+          <JalaliDateInput
+            value={data.start_date}
+            onChange={(iso) => update("start_date", iso)}
             error={errors.start_date?.[0]}
           />
         </Field>

@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { LogIn, Lock, User as UserIcon } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { Button, Card, Field, Input, Alert } from "@/components/ui";
@@ -25,6 +26,17 @@ export default function AdminLoginPage() {
     setLoading(true);
     try {
       await login(username, password);
+      // ذخیره‌ی صریح در مدیریت رمز مرورگر — چون SPA است و navigation کامل صفحه رخ نمی‌دهد،
+      // برخی مرورگرها بدون این فراخوانی پرامپت «ذخیره رمز عبور» را نشان نمی‌دهند.
+      if (typeof window !== "undefined" && "credentials" in navigator && "PasswordCredential" in window) {
+        try {
+          // @ts-expect-error -- PasswordCredential در تایپ‌های استاندارد TS تعریف نشده
+          const cred = new window.PasswordCredential({ id: username, password, name: username });
+          await navigator.credentials.store(cred);
+        } catch {
+          // بی‌اهمیت — ذخیره‌ی خودکار رمز صرفاً یک بهبود تجربه‌ی کاربری است
+        }
+      }
       router.push("/admin/");
     } catch (err) {
       if (err instanceof ApiError) {
@@ -91,6 +103,13 @@ export default function AdminLoginPage() {
             <LogIn size={16} />
           </Button>
         </form>
+
+        <Link
+          href="/admin/forgot-password/"
+          className="mt-5 block text-center text-sm font-medium text-[var(--ink-soft)] hover:text-[var(--primary-color)]"
+        >
+          فراموشی رمز عبور؟
+        </Link>
       </Card>
     </div>
   );
