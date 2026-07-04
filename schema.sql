@@ -4,12 +4,6 @@
 --  charset: utf8mb4
 -- ============================================================
 
-CREATE DATABASE IF NOT EXISTS `studio_form`
-  DEFAULT CHARACTER SET utf8mb4
-  DEFAULT COLLATE utf8mb4_unicode_ci;
-
-USE `studio_form`;
-
 -- ------------------------------------------------------------
 --  جدول ادمین‌ها (برای ورود به داشبورد)
 -- ------------------------------------------------------------
