@@ -36,12 +36,19 @@ export default function SuccessPage() {
               معمولاً ظرف ۱ تا ۲ روز کاری با شما تماس می‌گیریم
             </span>
           </div>
-          <div className="flex items-center gap-3 rounded-xl bg-[var(--surface-muted)] p-3.5">
+          <a
+            href="tel:09015909044"
+            className="flex items-center gap-3 rounded-xl bg-[var(--surface-muted)] p-3.5 transition hover:opacity-80"
+            dir="ltr"
+          >
             <PhoneCall size={18} className="shrink-0 text-[var(--primary-color)]" />
-            <span className="text-xs leading-5 text-[var(--ink-soft)]">
-              اگر سؤالی دارید می‌توانید مستقیم با ما تماس بگیرید
+            <span className="text-xs leading-5 text-[var(--ink-soft)]" dir="rtl">
+              اگر سؤالی دارید مستقیم با ما تماس بگیرید:{" "}
+              <span className="font-semibold text-[var(--ink)]" dir="ltr">
+                ۰۹۰۱۵۹۰۹۰۴۴
+              </span>
             </span>
-          </div>
+          </a>
         </div>
 
         <Link href="/" className="mt-8 inline-block">
